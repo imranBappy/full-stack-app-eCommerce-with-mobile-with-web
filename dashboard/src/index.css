@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* create icon btn componet */
+@layer components {
+  .icon_btn {
+    @apply text-lg hover:dark:bg-lite4 dark:bg-dark1 dark:text-dark4 bg-lite2 hover:bg-lite3 p-2 rounded cursor-pointer;
+  }
+  .theme_component {
+    @apply bg-white shadow shadow-lite4  dark:bg-dark2 rounded-sm;
+  }
+  .product_input {
+    @apply px-4 gap-2  flex items-center dark:bg-dark1 dark:text-dark4 mb-2 rounded;
+  }
+  .product_input_filed {
+    @apply outline-none py-2 dark:bg-dark1   dark:text-dark4;
+  }
+}
