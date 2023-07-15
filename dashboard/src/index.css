@@ -14,6 +14,6 @@
     @apply px-4 gap-2  flex items-center dark:bg-dark1 dark:text-dark4 mb-2 rounded;
   }
   .product_input_filed {
-    @apply outline-none py-2 dark:bg-dark1   dark:text-dark4;
+    @apply outline-none py-2 dark:bg-dark1 dark:text-dark4 w-full;
   }
 }
