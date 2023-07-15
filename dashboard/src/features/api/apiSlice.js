@@ -1,9 +1,10 @@
 /* eslint-disable no-undef */
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+const baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000'
 const apiSlice = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({
-        baseUrl: process.env.REACT_APP_API_URL || 'http://localhost:5000',
+        baseUrl: baseUrl,
         prepareHeaders: (headers, state, endPoints) => {
             return headers;
         }

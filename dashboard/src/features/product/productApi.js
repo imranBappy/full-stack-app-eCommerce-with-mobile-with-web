@@ -60,7 +60,6 @@ export const productApi = apiSlice.injectEndpoints({
                 url: `/products/${_id}`,
                 method: 'DELETE',
             }),
-
             // cash optimistic update
             async onQueryStarted(
                 arg,
@@ -69,9 +68,10 @@ export const productApi = apiSlice.injectEndpoints({
                 try {
                     const res = await queryFulfilled;
                     const { data } = res;
-                    dispatch(productApi.util.updateQueryData('getUsers', {}, (draft) => {
-                        const findIndex = draft?.findIndex((user) => user?._id === data?._id)
-                        draft.splice(findIndex, 1)
+                    dispatch(productApi.util.updateQueryData('getProducts', {}, (draft) => {
+                        const findIndex = draft?.products?.findIndex((prod) => prod?._id === data?._id)
+                        draft.products.splice(findIndex, 1)
+                        draft.length--;
                     }))
                 } catch (error) {
                     console.log(error);
@@ -81,4 +81,4 @@ export const productApi = apiSlice.injectEndpoints({
     })
 })
 
-export const { useGetProductsQuery, usePostProductMutation } = productApi;
+export const { useGetProductsQuery, usePostProductMutation, useDeleteProductMutation } = productApi;

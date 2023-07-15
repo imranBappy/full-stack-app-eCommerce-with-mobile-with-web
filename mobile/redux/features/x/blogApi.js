@@ -4,12 +4,12 @@ import { dashboarApi } from '../dashboard/dashboardApi';
 export const blogApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         postBlog: builder.mutation({
-            query: (body) =>( {
+            query: (body) => ({
                 url: '/blog',
                 method: 'POST',
                 body
             }),
-            async onQueryStarted(body, { dispatch, queryFulfilled }) { 
+            async onQueryStarted(body, { dispatch, queryFulfilled }) {
                 try {
                     const result = await queryFulfilled;
 
@@ -22,63 +22,63 @@ export const blogApi = apiSlice.injectEndpoints({
                     dispatch(dashboarApi.util.updateQueryData('dashboardGetBlog', {}, (draft) => {
                         draft.unshift(result.data);
                     }))
-                } catch (error) {}
+                } catch (error) { }
             },
         }),
         getBlogs: builder.query({
             query: () => `/blog`,
-            providesTags:['Blogs']
+            providesTags: ['Blogs']
         }),
         getMoreBlogs: builder.query({
-            query: ({page}:any) => `/blog?page=${page}`,
-            async onQueryStarted({ page }, { dispatch, queryFulfilled }) { 
+            query: ({ page }) => `/blog?page=${page}`,
+            async onQueryStarted({ page }, { dispatch, queryFulfilled }) {
                 try {
                     const result = await queryFulfilled;
-                    if (result.data.blogs.length > 0) { 
+                    if (result.data.blogs.length > 0) {
                         dispatch(blogApi.util.updateQueryData('getBlogs', {}, (draft) => {
                             draft.blogs.push(...result.data.blogs);
                         }))
                     }
-                } catch (error) {}
+                } catch (error) { }
             },
         }),
         getBlog: builder.query({
             query: (id) => `/blog/${id}`,
             providesTags: (result, error, id) => {
-                return [{type: 'Blog', id:id}]
+                return [{ type: 'Blog', id: id }]
             }
         }),
         updateBlog: builder.mutation({
-            query: ({ id,body }) => ({
+            query: ({ id, body }) => ({
                 url: `/blog/${id}`,
                 method: 'PATCH',
                 body
             }),
-          async onQueryStarted({ id,body }, { dispatch, queryFulfilled }) { 
+            async onQueryStarted({ id, body }, { dispatch, queryFulfilled }) {
                 // cash passimstic update
                 try {
                     const result = await queryFulfilled;
 
                     // update dashboardGetBlog cash
-                    dispatch(dashboarApi.util.updateQueryData('dashboardGetBlog', {}, (draft) => { 
-                        const index = draft.findIndex((blog: any) => blog._id === result.data._id);
+                    dispatch(dashboarApi.util.updateQueryData('dashboardGetBlog', {}, (draft) => {
+                        const index = draft.findIndex((blog) => blog._id === result.data._id);
                         draft[index] = result.data;
                     }))
 
                     //update getBlogs cash
                     dispatch(blogApi.util.updateQueryData('getBlogs', {}, (draft) => {
-                        const index = draft.blogs.findIndex((blog:any) => blog._id === result.data._id);
+                        const index = draft.blogs.findIndex((blog) => blog._id === result.data._id);
                         draft.blogs[index] = result.data;
                     }))
-                    
+
                     dispatch(blogApi.util.updateQueryData('getBlog', id, (draft) => {
-            
-                        const {title, content, thumbnail} = result.data;
-                        draft.title =title;
+
+                        const { title, content, thumbnail } = result.data;
+                        draft.title = title;
                         draft.content = content;
                         draft.thumbnail = thumbnail;
                     }))
-                } catch (error) {}
+                } catch (error) { }
             },
         }),
         deleteBlog: builder.mutation({
@@ -86,29 +86,29 @@ export const blogApi = apiSlice.injectEndpoints({
                 url: `/blog/${id}`,
                 method: 'DELETE'
             }),
-            async onQueryStarted(id, { dispatch, queryFulfilled }) { 
+            async onQueryStarted(id, { dispatch, queryFulfilled }) {
                 // cash passimstic update
                 try {
                     const result = await queryFulfilled;
 
                     // update dashboardGetBlog cash
-                    dispatch(dashboarApi.util.updateQueryData('dashboardGetBlog', {}, (draft) => { 
-                        const index = draft.findIndex((blog: any) => blog._id === result.data._id);
+                    dispatch(dashboarApi.util.updateQueryData('dashboardGetBlog', {}, (draft) => {
+                        const index = draft.findIndex((blog) => blog._id === result.data._id);
                         draft.splice(index, 1);
                     }))
 
                     //update getBlogs cash
                     dispatch(blogApi.util.updateQueryData('getBlogs', {}, (draft) => {
-                        const index = draft.blogs.findIndex((blog:any) => blog._id === result.data._id);
+                        const index = draft.blogs.findIndex((blog) => blog._id === result.data._id);
                         draft.blogs.splice(index, 1);
                     }))
-                    
 
-                } catch (error) {}
+
+                } catch (error) { }
             },
         }),
-         
+
     })
 })
 
-export const {useDeleteBlogMutation, useUpdateBlogMutation, usePostBlogMutation, useGetBlogsQuery , useGetBlogQuery}  = blogApi
+export const { useDeleteBlogMutation, useUpdateBlogMutation, usePostBlogMutation, useGetBlogsQuery, useGetBlogQuery } = blogApi

@@ -4,10 +4,9 @@ import React from 'react'
 import { addToCart } from '../redux/features/cartFeatures';
 import { useDispatch, useSelector } from 'react-redux';
 import { incrementQty } from '../redux/features/productFeatures';
-import Button from './Button';
 
 const Product = ({ navigation, ...props }) => {
-    const { name, image, price, id } = props.item;
+    const { name, thumbnail, price, id } = props.item;
     const cart = useSelector((state) => state.cart.cart)
     const dispatch = useDispatch();
     const addToCartHandle = () => {
@@ -52,7 +51,7 @@ const Product = ({ navigation, ...props }) => {
                     }}
                 >
                     <Image
-                        source={{ uri: image }} style={{
+                        source={{ uri: thumbnail }} style={{
                             width: "100%",
                             height: "100%",
                             resizeMode: "contain"

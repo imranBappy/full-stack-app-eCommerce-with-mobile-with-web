@@ -101,7 +101,15 @@ exports.productDeleteController = async (req, res, next) => {
             throw error
         }
         await Product.findOneAndDelete({ _id: productId })
-        res.json(blog)
+        await Brand.findOneAndUpdate(
+            { _id: product.brand },
+            { $pull: { 'products': product._id } }
+        );
+        await Category.findOneAndUpdate(
+            { _id: product.category },
+            { $pull: { 'products': product._id } }
+        )
+        res.json(product)
     } catch (error) {
         next(error)
     }

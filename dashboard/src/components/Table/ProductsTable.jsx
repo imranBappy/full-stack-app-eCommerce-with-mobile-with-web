@@ -1,41 +1,32 @@
-import { useEffect, useState } from 'react';
 import { BiSearch } from 'react-icons/bi'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
-import { useDispatch, useSelector } from 'react-redux';
-import orders from '../../data/orders.json'
-import { userGetCustomare } from '../../features/customare/customareSlice';
-import Status from '../Status/Status';
-import { userCustomareFilter } from '../../features/filter/filterSlice';
-import { costomarePagination } from '../../features/pagination/paginationSlice';
-import { useGetProductsQuery } from '../../features/product/productApi';
+import { useSelector } from 'react-redux';
+
+import { useDeleteProductMutation, useGetProductsQuery } from '../../features/product/productApi';
 import Loading from '../ui/Loading';
+import { toast } from 'react-toastify';
+import { useEffect } from 'react';
+import ProductItem from '../ProductItem/ProductItem';
 const ProductTable = () => {
+    const { page } = useSelector((state) => state.pagination);
+    const { data = {}, isLoading: dataLoading } = useGetProductsQuery({});
 
-    const { customares, page } = useSelector((state) => state.pagination);
-
-    const { data = {}, isLoading } = useGetProductsQuery();
-
-    const { products, length } = data || {};
-
-    console.log(products, length, customares);
+    const { products } = data || {};
 
 
-    const handleStatus = (e) => {
+    const handleStatus = () => { }
+    const handlePage = () => { }
 
-    }
-    const handlePage = (p) => {
-
-    }
 
     return (
         <div className='theme_component mt-5 py-5 w-full  '>
             {
-                isLoading ? <Loading /> :
+                dataLoading ? <Loading /> :
 
                     <>
                         <div className=" flex  flex-wrap gap-4 justify-between mx-5 py-4 ">
                             <div>
-                                <select value={status} onChange={handleStatus} name="" id="" className="bg-lite2 font-semibold text-black   outline-none px-4 py-2 dark:bg-dark1 dark:text-dark4 rounded " >
+                                <select value={'status'} onChange={handleStatus} name="" id="" className="bg-lite2 font-semibold text-black   outline-none px-4 py-2 dark:bg-dark1 dark:text-dark4 rounded " >
                                     <option value="All">All</option>
                                     <option value="Pending">Pending</option>
                                     <option value="Complated">Complated</option>
@@ -60,37 +51,14 @@ const ProductTable = () => {
                                         <th className=" py-5  min-w-[70px] ">Price</th>
                                         <th className=" py-5   min-w-[100px]">brand</th>
                                         <th className=" py-5   min-w-[100px]">Category</th>
+                                        <th className=" py-5   min-w-[100px]">Action</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {
-                                        products?.map((prod, i) => {
-                                            const { name, price, stock, brand, category, createdAt } = prod;
-                                            const date = new Date(createdAt)
-                                            return <tr key={prod._id} className=" hover:bg-lite5" style={{ borderBottom: "1px solid rgb(22, 119, 255, 0.2)", borderStyle: " dotted" }} >
-                                                <td className="pl-6 py-4"> <input type="checkbox" className="" name="" id="" /> </td>
-                                                <td>
-                                                    <div className=' flex flex-col '>
-                                                        <div className=' font-semibold'>
-                                                            {name}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div className=' flex flex-col'>
-                                                        <div className=' font-semibold'>
-                                                            {date.toLocaleDateString()}
-                                                        </div>
-                                                        <div className=' font-thin'>
-                                                            {date.toLocaleTimeString()}
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>{stock}</td>
-                                                <td>৳{price}</td>
-                                                <td>{category.name}</td>
-                                                <td>{brand.name}</td>
-                                            </tr>
+                                        products?.map((prod) => {
+                                            return <ProductItem key={prod._id} prod={prod} />
                                         }
                                         )
                                     }

@@ -1,14 +1,36 @@
 import React, { useEffect } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { products } from '../data/data'
 import Product from './Product';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../redux/features/productFeatures';
+import { useGetAllProductsQuery } from '../redux/features/product/productApi';
+import ProductCardLoader from './UI/ProductCardLoader';
 
 const Products = ({ navigation }) => {
     const cart = useSelector((state) => state.cart)
     const product = useSelector((state) => state.product.product);
     const dispatch = useDispatch();
+    const { data, isLoading } = useGetAllProductsQuery();
+    const { products = [] } = data || {};
+    console.log(data, 122);
+    let content = null;
+    if (isLoading) {
+        content = <>
+            <ProductCardLoader key={1} />
+            <ProductCardLoader key={2} />
+            <ProductCardLoader key={3} />
+            <ProductCardLoader key={4} />
+        </>;
+    } else if (products) {
+        content = products?.map((prod) => <Product
+            navigation={navigation}
+            key={prod.id}
+            item={prod}
+        />)
+    }
+
+
+
     useEffect(() => {
         if (product.length > 0) return;
         dispatch(getProducts(products))
@@ -28,11 +50,7 @@ const Products = ({ navigation }) => {
                 }}
             >
                 {
-                    product.map((item) => <Product
-                        navigation={navigation}
-                        key={item.id}
-                        item={item}
-                    />)
+                    content
                 }
             </View>
 

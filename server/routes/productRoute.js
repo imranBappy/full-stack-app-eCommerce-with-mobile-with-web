@@ -7,8 +7,8 @@ const router = require('express').Router();
 router.get('/', productsGetController);
 router.get('/:productId', productGetController);
 router.post('/', upload.single('thumbnail'), productPostController);
-router.patch('/:productId', isAuthenticated, upload.single('thumbnail'), productPatchController);
-router.delete('/:productId', isAuthenticated, productDeleteController);
+router.patch('/:productId', upload.single('thumbnail'), productPatchController);
+router.delete('/:productId', productDeleteController);
 
 
 
