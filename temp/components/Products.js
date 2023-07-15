@@ -23,7 +23,7 @@ const Products = ({ navigation }) => {
     } else if (products) {
         content = products?.map((prod) => <Product
             navigation={navigation}
-            key={prod._id}
+            key={prod.id}
             item={prod}
         />)
     }

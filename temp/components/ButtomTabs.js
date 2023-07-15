@@ -15,11 +15,14 @@ const Stack = createStackNavigator();
 function StackNavigator() {
     return (
         <Stack.Navigator>
-            <Stack.Screen options={{ headerShown: false, }} name="Home" component={HomeScreen} />
+            <Stack.Screen options={{
+                headerShown: false,
+            }} name="Home" component={HomeScreen} />
             <Stack.Screen name="Checkout" component={CheckoutScreen} />
             <Stack.Screen name="Product" component={ProductScreen} />
             <Stack.Screen name="Signup" component={SignupScreen} />
             <Stack.Screen name="SignIn" component={SignInScreen} />
+
         </Stack.Navigator>
     );
 }
@@ -50,7 +53,8 @@ function ButtomTabs() {
             }}
         >
             <Tab.Screen
-                name="App"
+
+                name="Home"
                 component={StackNavigator}
                 options={{
                     headerShown: false,

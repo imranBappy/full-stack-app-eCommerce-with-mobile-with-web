@@ -9,7 +9,7 @@ const Carousel = () => {
         "https://res.cloudinary.com/do5erbtee/image/upload/v1689394986/slide/side3_yutc5s.png",
     ];
     return (
-        <View style={{ marginBottom: 15 }}>
+        <View>
             <SliderBox
                 images={images}
                 autoPlay={true}

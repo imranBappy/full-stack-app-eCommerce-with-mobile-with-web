@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "e-commerce",
-    "slug": "e-commerce",
+    "name": "eCommerce",
+    "slug": "mistECommerce",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#088F8F"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -20,16 +20,16 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#088F8F"
       },
-      "package": "com.imranbappy.ecommerce"
+      "package": "com.imranbappy.mobile"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "b78bb5db-d9d4-4a19-aac9-bfb4133795a4"
+        "projectId": "42706a79-6b76-4342-bbfa-cddcc407702b"
       }
     }
   }

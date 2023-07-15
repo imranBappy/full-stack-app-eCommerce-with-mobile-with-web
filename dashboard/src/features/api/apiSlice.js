@@ -4,7 +4,7 @@ const baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000'
 const apiSlice = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({
-        baseUrl: baseUrl,
+        baseUrl: 'https://e-commerce-eykj.onrender.com',
         prepareHeaders: (headers, state, endPoints) => {
             return headers;
         }
