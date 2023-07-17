@@ -19,7 +19,6 @@ const InputFiled = ({ handleInput, type, options, ...rest }) => {
         </div>
     }
 
-
     return (
         content
     );

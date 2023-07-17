@@ -1,22 +1,13 @@
 // rnfes
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { addToCart } from '../redux/features/cartFeatures';
-import { useDispatch, useSelector } from 'react-redux';
-import { incrementQty } from '../redux/features/productFeatures';
 
 const Product = ({ navigation, ...props }) => {
-    const { name, thumbnail, price, id } = props.item;
-    const cart = useSelector((state) => state.cart.cart)
-    const dispatch = useDispatch();
-    const addToCartHandle = () => {
-        dispatch(addToCart(props.item))
-        dispatch(incrementQty(props.item))
-    }
+    const { name, thumbnail, price, _id } = props.item;
 
     return (
         <Pressable
-            onPress={() => navigation.navigate("Product", { id })}
+            onPress={() => navigation.navigate("Product", { _id })}
             style={{
                 width: "50%",
             }}>
@@ -36,7 +27,7 @@ const Product = ({ navigation, ...props }) => {
                     },
                     shadowOpacity: 0.5,
                     shadowRadius: 10.0,
-                    elevation: 3,
+                    elevation: 1.5,
                 }}>
 
                 <View
@@ -72,6 +63,7 @@ const Product = ({ navigation, ...props }) => {
                         marginBottom: 10
 
                     }}>{name}</Text>
+
                     <Text style={{
                         width: 60,
                         fontSize: 16,
@@ -80,7 +72,6 @@ const Product = ({ navigation, ...props }) => {
 
                     }}>${price}</Text>
                 </View>
-
 
             </View>
         </Pressable>

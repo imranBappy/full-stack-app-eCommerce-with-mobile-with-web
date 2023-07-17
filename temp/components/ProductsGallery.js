@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import React from "react";
 import { SliderBox } from "react-native-image-slider-box";
 
@@ -25,4 +25,3 @@ const ProductGallery = (props) => {
 
 export default ProductGallery;
 
-const styles = StyleSheet.create({});

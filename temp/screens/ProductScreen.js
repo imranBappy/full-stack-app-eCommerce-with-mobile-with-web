@@ -1,26 +1,26 @@
-import { View, Text, StyleSheet, Pressable } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
-import Carousel from '../components/Carousel'
 import ProductGallery from '../components/ProductsGallery'
 import { EvilIcons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 import { useRoute } from '@react-navigation/core'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { addToCart } from '../redux/features/cartFeatures'
 import { incrementQty } from '../redux/features/productFeatures'
 import Button from '../components/Button'
+import { useGetAllProductsQuery } from '../redux/features/product/productApi'
 
 const ProductScreen = () => {
     const route = useRoute()
-    const id = route.params?.id
-    const products = useSelector((state) => state.product.product);
-    const product = products.find((item) => item.id === id) || {}
-    const { image, name, stock, price, brand, category } = product || {}
+    const id = route.params?._id
+    const { data } = useGetAllProductsQuery();
+    const { products = [] } = data || {};
+    const product = products?.find((item) => item?._id === id) || {}
+    const { thumbnail, name, stock, price, brand, category } = product || {}
 
     const dispatch = useDispatch();
     const addToCartHandle = () => {
         dispatch(addToCart(product))
-        dispatch(incrementQty(product))
     }
 
     const handleBuyNow = () => {
@@ -28,7 +28,7 @@ const ProductScreen = () => {
     }
     return (
         <ScrollView style={styles.container}>
-            <ProductGallery images={[image]} />
+            <ProductGallery images={[thumbnail]} />
             <View style={{ marginVertical: 20, marginHorizontal: 10 }}>
                 <Text style={styles.name}>{name}</Text>
             </View>
@@ -53,8 +53,6 @@ const ProductScreen = () => {
                 padding: 10
 
             }}>
-
-
                 <View>
                     <View style={{
                         flexDirection: "row",
@@ -77,11 +75,8 @@ const ProductScreen = () => {
                         alignItems: "center",
                         marginBottom: 5,
                         gap: 5
-
-
                     }}>
                         <MaterialCommunityIcons name="truck-delivery-outline" size={15} color="black" />
-
                         <Text
                             style={{
                                 fontWeight: "bold"
@@ -99,7 +94,7 @@ const ProductScreen = () => {
                         <MaterialIcons name="store" size={15} color="black" />
                         <Text style={{
                             fontWeight: "bold"
-                        }}>Stock: 10</Text>
+                        }}>Stock: ${stock}</Text>
                     </View>
                 </View>
                 {/* Product Price */}
@@ -226,7 +221,7 @@ const ProductScreen = () => {
                             textAlign: "center"
 
                         }}
-                    > Samsung</Text>
+                    > {brand?.name}</Text>
                 </View>
 
                 <View style={{
@@ -254,7 +249,7 @@ const ProductScreen = () => {
                             textAlign: "center"
 
                         }}
-                    >  Phone</Text>
+                    >  {category?.name}</Text>
                 </View>
 
             </View>

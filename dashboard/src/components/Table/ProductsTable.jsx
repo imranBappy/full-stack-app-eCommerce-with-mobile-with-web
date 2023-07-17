@@ -44,8 +44,9 @@ const ProductTable = () => {
                             <table className=" w-full  text-black dark:text-dark4">
                                 <thead>
                                     <tr className=" text-left bg-primary2 ">
-                                        <th className=" pl-6 py-4 min-w-[55px]   ">#</th>
+                                        <th className=" pl-6 py-4 min-w-[55px]">#</th>
                                         <th className=" py-5  min-w-[250px] ">Name</th>
+
                                         <th className=" py-5 min-w-[120px]  ">Date</th>
                                         <th className=" py-5  min-w-[55px] ">Stock</th>
                                         <th className=" py-5  min-w-[70px] ">Price</th>

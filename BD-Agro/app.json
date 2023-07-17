@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "scheme": "acme",
+    "web": {
+      "bundler": "metro"
+    },
+    "name": "BD-Agro",
+    "slug": "BD-Agro",
+    "extra": {
+      "eas": {
+        "projectId": "5319a4f9-9127-4892-9b30-32aaf5fb6513"
+      }
+    },
+    "android": {
+      "package": "com.imranbappy.BDAgro"
+    }
+  }
+}

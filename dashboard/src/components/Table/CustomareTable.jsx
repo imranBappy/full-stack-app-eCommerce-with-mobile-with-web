@@ -97,9 +97,24 @@ const CustomareTable = () => {
                                                 <Status status={cus.status} />
                                             </div>
                                             <div>
-                                                {cus.status}
+                                                <select id="" className=" w-36 mb-2 bg-lite2 font-semibold text-black   outline-none px-4 py-2 dark:bg-dark1 dark:text-dark4 rounded " >
+                                                    <option>
+                                                        {cus.status}
+                                                    </option>
+
+                                                    <option>
+                                                        {cus.status}
+                                                    </option>   <option>
+                                                        {cus.status}
+                                                    </option>   <option>
+                                                        {cus.status}
+                                                    </option>
+
+                                                </select>
                                             </div>
                                         </div>
+
+
                                     </td>
                                 </tr>
                             }

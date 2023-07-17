@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { View } from "react-native";
 import React from "react";
 import { SliderBox } from "react-native-image-slider-box";
 
@@ -9,7 +9,7 @@ const Carousel = () => {
         "https://res.cloudinary.com/do5erbtee/image/upload/v1689394986/slide/side3_yutc5s.png",
     ];
     return (
-        <View>
+        <View style={{ marginBottom: 15 }}>
             <SliderBox
                 images={images}
                 autoPlay={true}

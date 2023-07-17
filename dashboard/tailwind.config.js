@@ -16,13 +16,13 @@ export default {
 
         dark3: "rgba(140, 140, 140, 0.9) ",
         dark4: "rgba(255, 255, 255, 0.87)", // dark text
-       
+
 
         lite1: "rgb(250, 250, 251)",
         lite2: "rgb(245, 245, 245)", // lite comp bg
         lite3: "rgb(217, 217, 217)", // lite comp bg hover
         lite4: "rgb(89, 89, 89)", // hover bg comp
-        lite5:"rgba(255, 255, 255, 0.05)" // hover bg comp navlink
+        lite5: "rgba(255, 255, 255, 0.05)" // hover bg comp navlink
 
       }
     },

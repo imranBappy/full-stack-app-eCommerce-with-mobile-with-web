@@ -76,7 +76,6 @@ const brands = [
     id: "15",
     image: "https://res.cloudinary.com/do5erbtee/image/upload/v1689329899/expo/IMG_8207_1_kdswqc.jpg",
     name: "P&G",
-
   },
   {
     id: "11",

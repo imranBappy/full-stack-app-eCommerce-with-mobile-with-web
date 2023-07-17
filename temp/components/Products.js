@@ -7,7 +7,6 @@ import { useGetAllProductsQuery } from '../redux/features/product/productApi';
 import ProductCardLoader from './UI/ProductCardLoader';
 
 const Products = ({ navigation }) => {
-    const cart = useSelector((state) => state.cart)
     const product = useSelector((state) => state.product.product);
     const dispatch = useDispatch();
     const { data, isLoading } = useGetAllProductsQuery();
@@ -23,12 +22,10 @@ const Products = ({ navigation }) => {
     } else if (products) {
         content = products?.map((prod) => <Product
             navigation={navigation}
-            key={prod.id}
+            key={prod._id}
             item={prod}
         />)
     }
-
-
 
     useEffect(() => {
         if (product.length > 0) return;

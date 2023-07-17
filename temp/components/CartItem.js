@@ -3,7 +3,7 @@ import { Image, Pressable, Text, View } from 'react-native';
 import { decrementQuantity, incrementQuantity } from '../redux/features/cartFeatures';
 
 const CardItem = (props) => {
-    const { name, image, price, id } = props.item;
+    const { name, thumbnail, price, _id } = props.item;
     const cart = useSelector((state) => state.cart.cart)
     const dispatch = useDispatch();
     return (
@@ -14,13 +14,13 @@ const CardItem = (props) => {
                     "center"
             }}>
                 <View>
-                    <Image source={{ uri: image }} style={{ width: 50, height: 50, marginRight: 20 }} />
+                    <Image source={{ uri: thumbnail }} style={{ width: 50, height: 50, marginRight: 20 }} />
                 </View>
                 <View>
                     <Text style={{ width: 180, fontSize: 14, fontWeight: "500", marginBottom: 7 }}>{name}</Text>
                     <Text style={{ width: 60, fontSize: 15, color: "gray" }}>${price}</Text>
                 </View>
-                {cart?.some((c) => c.id === id) ? (
+                {cart?.some((c) => c_._id === _id) ? (
                     <Pressable
                         style={{
                             flexDirection: "row",

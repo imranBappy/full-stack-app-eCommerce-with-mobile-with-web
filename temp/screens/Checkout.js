@@ -2,20 +2,18 @@
 import { Pressable, ScrollView, StyleSheet, Text, Touchable, View } from 'react-native'
 import React from 'react'
 import { useSelector } from 'react-redux'
-import Product from '../components/Product'
 import InputAddress from '../components/InputAddress'
 import CardItem from '../components/CartItem'
 
 const CheckoutScreen = () => {
     const cart = useSelector((state) => state.cart.cart)
     const total = cart.reduce((total, item) => (total + item.price) * item.quantity, 0);
-    // const handleSubmit
     return (
         <ScrollView style={styles.container}>
             <View>
                 {
                     cart?.map((item) => <CardItem
-                        key={item.id}
+                        key={item._id}
                         item={item}
                     />)
                 }

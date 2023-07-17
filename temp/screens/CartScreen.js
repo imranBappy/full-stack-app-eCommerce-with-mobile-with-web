@@ -1,7 +1,6 @@
-import { Pressable, ScrollView, StyleSheet, Text, Touchable, View } from 'react-native'
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { useSelector } from 'react-redux'
-import Product from '../components/Product'
 import ProductItem from '../components/CartItem'
 
 const CartScreen = ({ navigation }) => {
@@ -12,7 +11,7 @@ const CartScreen = ({ navigation }) => {
             <View>
                 {
                     cart?.map((item) => <ProductItem
-                        key={item.id}
+                        key={item._id}
                         item={item}
                     />)
                 }

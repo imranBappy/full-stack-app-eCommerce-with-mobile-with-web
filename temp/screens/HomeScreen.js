@@ -6,15 +6,13 @@ import Carousel from '../components/Carousel';
 import Services from '../components/Services';
 import Products from '../components/Products';
 import { services } from '../data/data'
-import { brands } from '../data/data'
 import Brands from '../components/Brands';
 import Categores from './Categores';
 
 
 const HomeScreen = ({ navigation }) => {
     const [address, setAddress] = useState("Loading...");
-    const [locationEnabled, setLocationEnabled] = useState(false);
-
+    const [, setLocationEnabled] = useState(false);
 
     useEffect(() => {
         checkIfLocationEnabled()
@@ -47,7 +45,6 @@ const HomeScreen = ({ navigation }) => {
                 [
                     {
                         text: 'Cancel',
-
                     },
                     { text: 'OK' },
                 ]);

@@ -32,10 +32,10 @@ export const productApi = apiSlice.injectEndpoints({
             },
         }),
         updateProduct: builder.mutation({
-            query: ({ _id, ...patch }) => ({
+            query: ({ _id, product }) => ({
                 url: `/products/${_id}`,
-                method: 'PUT',
-                body: patch
+                method: 'PATCH',
+                body: product
             }),
             // cash optimistic update
             async onQueryStarted(
@@ -44,11 +44,12 @@ export const productApi = apiSlice.injectEndpoints({
             ) {
                 try {
                     const { data } = await queryFulfilled;
-                    dispatch(productApi.util.updateQueryData('getUsers', {}, (draft) => {
-                        const findIndex = draft?.findIndex((user) => user?._id === data?._id)
-                        draft[findIndex].name = data.name
-                        draft[findIndex].email = data.email
-                        draft[findIndex].phone = data.phone
+                    dispatch(productApi.util.updateQueryData('getProducts', {}, (draft) => {
+                        const findIndex = draft?.products?.findIndex((prod) => prod?._id === data?._id)
+                        draft.products[findIndex].name = data.name
+                        draft.products[findIndex].price = data.price
+                        draft.products[findIndex].stock = data.stock
+                        draft.products[findIndex].thumbnail = data.thumbnail
                     }))
                 } catch (error) {
                     console.log(error);
@@ -81,4 +82,4 @@ export const productApi = apiSlice.injectEndpoints({
     })
 })
 
-export const { useGetProductsQuery, usePostProductMutation, useDeleteProductMutation } = productApi;
+export const { useGetProductsQuery, usePostProductMutation, useDeleteProductMutation, useUpdateProductMutation } = productApi;

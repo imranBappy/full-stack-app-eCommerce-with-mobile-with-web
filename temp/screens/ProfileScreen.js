@@ -21,8 +21,6 @@ export default function ProfileScreen() {
                     elevation: 3,
                 }}
             >
-
-
                 <View style={{
                     marginTop: 10,
                     flex: 1,

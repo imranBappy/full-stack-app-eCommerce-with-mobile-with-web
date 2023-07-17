@@ -1,9 +1,10 @@
 import NavLink from '../NavLink/NavLink'
 import logo from '../../assets/react.svg'
 import { AiOutlineDashboard, AiFillSetting } from 'react-icons/ai'
-import { MdOutlineManageAccounts, MdOutlineProductionQuantityLimits } from 'react-icons/md'
+import { MdCategory, MdOutlineManageAccounts, MdOutlineProductionQuantityLimits } from 'react-icons/md'
 import { HiTemplate } from 'react-icons/hi'
 import { FiUsers } from 'react-icons/fi'
+import { TbBrandAirtable } from 'react-icons/tb'
 
 
 
@@ -30,13 +31,13 @@ const Sidebar = ({ sidebar }) => {
                         <MdOutlineProductionQuantityLimits className={`  ${sidebar ? 'text-xl' : 'text-2xl'}`} />
                     </NavLink>
 
+                    <NavLink to="/brands" text="Brand" sidebar={sidebar} >
+                        <TbBrandAirtable className={`  ${sidebar ? 'text-xl' : 'text-2xl'}`} />
+                    </NavLink>
+                    <NavLink to="/category" text="Category" sidebar={sidebar} >
+                        <MdCategory className={`  ${sidebar ? 'text-xl' : 'text-2xl'}`} />
+                    </NavLink>
                     <NavLink to="/customares" text="Customare" sidebar={sidebar} >
-                        <FiUsers className={`  ${sidebar ? 'text-xl' : 'text-2xl'}`} />
-                    </NavLink>
-                    <NavLink to="/addBrand" text="Brand" sidebar={sidebar} >
-                        <FiUsers className={`  ${sidebar ? 'text-xl' : 'text-2xl'}`} />
-                    </NavLink>
-                    <NavLink to="/addCategory" text="Category" sidebar={sidebar} >
                         <FiUsers className={`  ${sidebar ? 'text-xl' : 'text-2xl'}`} />
                     </NavLink>
                 </ul>

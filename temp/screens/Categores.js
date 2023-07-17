@@ -1,4 +1,3 @@
-import { Text } from 'react-native'
 import React from 'react'
 import ServiceCard from '../components/ServiceCard';
 import { useGetAllCategoresQuery } from '../redux/features/category/category';

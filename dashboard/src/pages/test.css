@@ -1,0 +1,47 @@
+/* Reset default select styles */
+.custom-select select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 200px;
+  font-size: 16px;
+  background-color: white;
+  cursor: pointer;
+}
+
+/* Style the custom dropdown arrow */
+.custom-select::after {
+  content: "\25BC";
+  font-size: 12px;
+  padding: 5px;
+  border-left: 1px solid #ccc;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+/* Style the options when the dropdown is open */
+.custom-select select:focus {
+  background-color: #f1f1f1;
+}
+
+/* Style the options in the dropdown */
+.custom-select option {
+  padding: 10px;
+}
+
+/* Style the selected option */
+.custom-select option:checked {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Style the options on hover */
+.custom-select option:hover {
+  background-color: #f1f1f1;
+  color: #007bff;
+}

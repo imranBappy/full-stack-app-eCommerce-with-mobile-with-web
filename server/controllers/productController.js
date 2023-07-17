@@ -69,24 +69,57 @@ exports.productGetController = async (req, res, next) => {
 }
 
 exports.productPatchController = async (req, res, next) => {
-    const { blogId } = req.params
-    let { name, category, brand, price, stock } = req.body
+    const { productId } = req.params
+    let { name, price, stock } = req.body
+    const category = req.body?.category;
+    const brand = req.body?.brand;
+
     try {
-        let product = await Product.findById(blogId);
-        if (!blog) {
+        let product = await Product.findById(productId);
+        if (!product) {
             let error = new Error('404 blog not found')
             error.status = 404
             throw error
         }
+
         product.name = name || product.name;
-        product.category = category || product.category;
         product.price = price || product.price;
         product.stock = stock || product.stock;
+        product.thumbnail = req?.file?.path || product?.thumbnail;
+
+
+        if (product.category !== category) {
+            await Category.findOneAndUpdate(
+                { _id: category },
+                { $push: { 'products': productId } }
+            )
+            await Category.findOneAndUpdate(
+                { _id: product.category },
+                { $pull: { 'products': productId } }
+            )
+        }
+
+        if (product.brand !== brand) {
+            await Brand.findOneAndUpdate(
+                { _id: brand },
+                { $push: { 'products': productId } }
+            )
+            await Brand.findOneAndUpdate(
+                { _id: product.brand },
+                { $pull: { 'products': productId } }
+            )
+        }
+
+
+        product.category = category || product.category;
         product.brand = brand || product.brand;
-        product.thumbnail = req.file?.path || product.thumbnail;
+
+
         await product.save();
+
         res.json(product)
     } catch (error) {
+        console.log(error);
         next(error)
     }
 }
