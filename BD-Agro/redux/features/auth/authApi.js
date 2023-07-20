@@ -20,9 +20,10 @@ export const authApi = apiSlice.injectEndpoints({
                         user: result?.data?.data,
                     });
                     dispatch(userLoggedIn({
-                        accessToken: result.data.accessToken,
-                        user: result.data.data,
+                        accessToken: result.data?.accessToken,
+                        user: result?.data?.data,
                     }))
+
                 } catch (error) {
                     console.log(error);
                 }
@@ -42,9 +43,10 @@ export const authApi = apiSlice.injectEndpoints({
                         user: result?.data?.data,
                     });
                     dispatch(userLoggedIn({
-                        accessToken: result.data.accessToken,
-                        user: result.data.data,
+                        accessToken: result.data?.accessToken,
+                        user: result?.data?.data,
                     }))
+
                 } catch (error) {
 
                 }

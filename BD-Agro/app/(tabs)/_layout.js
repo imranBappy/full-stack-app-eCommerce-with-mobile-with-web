@@ -4,19 +4,16 @@ import { Tabs } from 'expo-router'
 import { Entypo } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import useAuthCheck from '../../hooks/useAuthCheck';
-import useAuth from '../../hooks/useAuth';
+
 
 export default () => {
-    const isLoading = useAuthCheck();
-    const auth = useAuth();
-    if (!isLoading) {
-        return <View><Text>Loading...</Text></View>
-    }
+
     return (
         <Tabs>
             <Tabs.Screen name='Home'
+
                 options={{
+
                     headerShown: false,
                     tabBarLabel: 'Home',
                     tabBarStyle: {
@@ -79,6 +76,7 @@ export default () => {
 
                 name='Profile'
                 options={{
+                    unmountOnBlur: true,
                     href: "/Profile",
                     headerShown: false,
                     tabBarLabel: 'Account',

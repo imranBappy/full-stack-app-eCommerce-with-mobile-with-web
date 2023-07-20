@@ -12,7 +12,6 @@ export const blogApi = apiSlice.injectEndpoints({
         }),
         getOrders: builder.query({
             query: (userId) => {
-
                 console.log(userId);
                 return `/orders/${userId}`
             },

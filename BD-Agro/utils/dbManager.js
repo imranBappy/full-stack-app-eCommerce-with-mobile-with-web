@@ -13,9 +13,13 @@ async function getData() {
     }
 }
 async function clearAuth() {
-    let result = await SecureStore.getItemAsync('auth');
-    if (result) {
-        await SecureStore.deleteItemAsync('auth');
+    try {
+        let result = await SecureStore.getItemAsync('auth');
+        if (result) {
+            await SecureStore.deleteItemAsync('auth');
+        }
+    } catch (error) {
+        console.log(222, error);
     }
 }
 

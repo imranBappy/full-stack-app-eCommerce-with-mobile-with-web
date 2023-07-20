@@ -14,12 +14,15 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Redirect, useNavigation, useRouter } from 'expo-router';
 import Button from "../components/UI/Button";
 import { useLoginMutation } from "../redux/features/auth/authApi";
+import { useDispatch } from "react-redux";
+import { setData } from "../utils/dbManager";
+import { userLoggedIn } from "../redux/features/auth/authSlice";
 
 const SignIn = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("imranbappy.official@gmail.com");
+    const [password, setPassword] = useState("pass123");
     const navigation = useRouter();
-    const [login, { data, isLoading, status, isError, error: resError }] = useLoginMutation({});
+    const [login, { isLoading, status, }] = useLoginMutation({});
 
     useEffect(() => {
         if (status === 'fulfilled') {
@@ -28,17 +31,6 @@ const SignIn = () => {
 
         }
     }, [status])
-
-
-    const navigation2 = useNavigation();
-
-    // Effect
-    useEffect(() => {
-        navigation2.addListener('beforeRemove', (e) => {
-            return <Redirect href='/Home' />
-        });
-    }, []);
-
 
     const submit = () => {
         login({ email, password })

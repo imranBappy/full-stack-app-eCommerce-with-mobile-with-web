@@ -5,14 +5,14 @@ import { useSelector } from 'react-redux';
 import { useGetOrdersQuery } from '../../redux/features/order/orderApi';
 
 const Orders = () => {
-    const auth = useSelector(state => state.auth);
-    const { data, status, error } = useGetOrdersQuery(auth?.user?._id,
-        {
-            skip: !auth?.user?._id
-        }
-    );
-    console.log(111, auth);
-    console.log(15, data, status, error);
+    // const auth = useSelector(state => state.auth);
+    // const { data, status, error } = useGetOrdersQuery(auth?.user?._id,
+    //     {
+    //         skip: !auth?.user?._id
+    //     }
+    // );
+    // console.log(111, auth);
+    // console.log(15, data, status, error);
     return (
         <ScrollView style={{ marginBottom: 50 }}>
             <Text style={{

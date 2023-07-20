@@ -8,6 +8,7 @@ const Cart = () => {
     const cart = useSelector((state) => state.cart.cart)
     const total = cart.reduce((total, item) => (total + item.price) * item.quantity, 0);
     const navigate = useRouter()
+
     return (
         <ScrollView style={styles.container}>
             <View>
