@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-const baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000'
+const baseUrl = process.env.REACT_APP_API_URL || 'https://e-commerce-eykj.onrender.com'
 //'https://e-commerce-eykj.onrender.com'
 
 const baseQuery = fetchBaseQuery({

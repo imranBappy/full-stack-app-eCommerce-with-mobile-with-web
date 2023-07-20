@@ -20,15 +20,29 @@ const Cart = () => {
             </View>
 
             <View style={{
+
                 marginTop: 10,
-                flexDirection: "row", justifyContent: "space-between",
-                padding: 10
+                flexDirection: "row",
+                justifyContent: "space-between",
+                padding: 10,
+
+                backgroundColor: "#f8f8f8",
+                elevation: 10,
+
+                borderRadius: 5,
+
+
             }} >
-                <Text style={{ flex: 1, fontSize: 18 }}>
+                <Text style={{ flex: 1, fontSize: 18, marginTop: 4 }}>
                     Total: <Text style={{ fontSize: 18, fontWeight: "bold", color: "#088f8f" }}> ${total}</Text>
                 </Text>
                 <Pressable style={{ flex: 1 }}
-                    onPress={() => navigate.push("Checkout")}
+                    onPress={() => {
+                        // please navigate to Login
+
+                        navigate.push('/Checkout')
+
+                    }}
                 >
                     <Text style={{
                         borderColor: "gray",
@@ -46,12 +60,12 @@ const Cart = () => {
     )
 }
 
-export default Cart
+export default Cart;
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        paddingTop: Platform.OS === 'android' ? 10 : 0
+        paddingTop: Platform.OS === 'android' ? 10 : 0,
+        minHeight: "100%",
     },
 });

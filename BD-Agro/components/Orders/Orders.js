@@ -5,7 +5,9 @@ import Order from './Order'
 const Orders = () => {
     return (
         <ScrollView style={{ marginBottom: 50 }}>
-            <Text>Orders</Text>
+            <Text style={{
+                fontSize: 16, fontWeight: "500", marginHorizontal: 10,
+            }} >{'Orders'}</Text>
 
             <Order item={
                 {

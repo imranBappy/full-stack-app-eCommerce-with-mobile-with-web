@@ -11,21 +11,37 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import React, { useEffect, useState } from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
+import { Redirect, useNavigation, useRouter } from 'expo-router';
 import Button from "../components/UI/Button";
+import { useLoginMutation } from "../redux/features/auth/authApi";
+
 const SignIn = () => {
     const [email, setEmail] = useState("");
-    const [loading, setLoading] = useState(false);
     const [password, setPassword] = useState("");
     const navigation = useRouter();
+    const [login, { data, isLoading, status, isError, error: resError }] = useLoginMutation({});
 
     useEffect(() => {
-        setLoading(false);
+        if (status === 'fulfilled') {
+            navigation.push('/Home')
+        } else if (status === 'rejected') {
 
-    }, [])
+        }
+    }, [status])
 
-    const login = () => {
 
+    const navigation2 = useNavigation();
+
+    // Effect
+    useEffect(() => {
+        navigation2.addListener('beforeRemove', (e) => {
+            return <Redirect href='/Home' />
+        });
+    }, []);
+
+
+    const submit = () => {
+        login({ email, password })
     }
 
     return (
@@ -37,7 +53,7 @@ const SignIn = () => {
                 padding: 10,
             }}
         >
-            {loading ? (
+            {isLoading ? (
                 <View style={{ alignItems: "center", justifyContent: "center", flexDirection: "row", flex: 1 }}>
                     <Text style={{ marginRight: 10 }}>Loading</Text>
                     <ActivityIndicator size="large" color={"red"} />
@@ -103,7 +119,7 @@ const SignIn = () => {
                         </View>
 
 
-                        <Button title="Login" onPress={login} />
+                        <Button title="Login" onPress={submit} />
                         <Pressable onPress={() => navigation.push("Signup")} style={{ marginTop: 20 }}>
                             <Text
                                 style={{

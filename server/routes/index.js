@@ -5,6 +5,7 @@ const routes = [
     { path: '/dashboard', router: require('./dashboardRoute.js') },
     { path: '/category', router: require('./categoriesRoutes.js') },
     { path: '/brand', router: require('./brandRoute.js') },
+    { path: '/orders', router: require('./orderRoute.js') },
 
 ]
 

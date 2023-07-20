@@ -8,7 +8,7 @@ const { width } = Dimensions.get('window');
 
 
 
-const MyCarousel = ({ DATA }) => {
+const MyCarousel = ({ DATA, height }) => {
     const renderItem = data => (
         <View
             key={data.coverImageUri}
@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width,
+        height: 150,
     },
     cardWrapper: {
         borderRadius: 8,
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
     },
     card: {
         width: width * 0.9,
-        height: width * 0.5,
+        height: 150,
     },
     cornerLabel: {
         position: 'absolute',

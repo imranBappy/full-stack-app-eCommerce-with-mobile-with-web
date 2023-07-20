@@ -53,7 +53,10 @@ const ProductDetails = () => {
                 }
             } />
 
-            <MyCarousel height={150} DATA={DATA} />
+            <MyCarousel height={150} DATA={[{
+                coverImageUri: thumbnail, cornerLabelColor: '#0080ff',
+                cornerLabelText: `Stock: ${stock}`,
+            }]} />
             <View style={{ marginVertical: 20, marginHorizontal: 10 }}>
                 <Text style={styles.name}>{name}</Text>
             </View>

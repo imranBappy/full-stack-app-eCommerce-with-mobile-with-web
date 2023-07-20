@@ -13,7 +13,6 @@ const Button = (props) => {
     };
     return (
         <View style={{
-            flex: 1
         }}>
             <TouchableWithoutFeedback onPress={onPress}
                 onPressIn={handlePressIn}

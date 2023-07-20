@@ -2,10 +2,9 @@ import { BiSearch } from 'react-icons/bi'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 import { useSelector } from 'react-redux';
 
-import { useDeleteProductMutation, useGetProductsQuery } from '../../features/product/productApi';
+import { useGetProductsQuery } from '../../features/product/productApi';
 import Loading from '../ui/Loading';
-import { toast } from 'react-toastify';
-import { useEffect } from 'react';
+
 import ProductItem from '../ProductItem/ProductItem';
 const ProductTable = () => {
     const { page } = useSelector((state) => state.pagination);
@@ -17,7 +16,7 @@ const ProductTable = () => {
     const handleStatus = () => { }
     const handlePage = () => { }
 
-
+    console.log({ data });
     return (
         <div className='theme_component mt-5 py-5 w-full  '>
             {

@@ -3,12 +3,27 @@ import React from 'react'
 import Items from '../../components/UI/Items';
 import Options from '../../components/Profile/Options';
 import Orders from '../../components/Orders/Orders';
+import { useDispatch, useSelector } from 'react-redux';
+import Button from '../../components/UI/Button';
+import { useRouter } from 'expo-router';
+import { userLoggedOut } from '../../redux/features/auth/authSlice';
+
 
 export default function ProfileScreen() {
+    const navigation = useRouter();
+    const auth = useSelector(state => state.auth);
+    const { user } = auth || {};
+    const { name, email } = user || {};
+    const dispatch = useDispatch();
+    const handleLogout = () => {
+        dispatch(userLoggedOut());
+        navigation.navigate('/Home')
+
+    }
     return (
         <ScrollView style={styles.container} >
 
-            <View // Desing Profile Card simple shadow
+            <View
                 style={{
                     backgroundColor: "#fff",
                     margin: 20,
@@ -44,20 +59,25 @@ export default function ProfileScreen() {
                         textAlign: "center",
                         marginTop: 10,
                         fontSize: 20,
-                    }}>Open Sakib</Text>
+                    }}>{name}</Text>
                 </View>
                 <View>
                     <Text style={{
                         textAlign: "center",
                         marginTop: 2,
                         fontSize: 15,
-                    }}>open@gmail.com</Text>
+                    }}>{email}</Text>
                 </View>
             </View>
             <Items>
                 <Options />
             </Items>
             <Orders />
+            <View style={{
+                margin: 20,
+            }}>
+                <Button title="Logout" onPress={handleLogout} />
+            </View>
         </ScrollView>
     )
 }

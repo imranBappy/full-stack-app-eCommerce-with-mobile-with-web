@@ -12,7 +12,13 @@
       }
     },
     "android": {
-      "package": "com.imranbappy.BDAgro"
+      "package": "com.imranbappy.BDAgro",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#088F8F"
+      },
+      "hermesEnabled": true,
+      "hermesEngine": "hermes-canary"
     }
   }
 }

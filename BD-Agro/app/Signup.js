@@ -10,20 +10,32 @@ import {
 } from "react-native";
 import { Feather } from '@expo/vector-icons';
 import { Ionicons } from "@expo/vector-icons";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import Button from "../components/UI/Button";
+import { useRegisterMutation } from "../redux/features/auth/authApi";
+
 
 
 const Signup = () => {
-
+    // console.log(111, getValueFor('auth'));
     const navigation = useRouter();
     const [name, setName] = useState("");
+    const [register, { data, isLoading, status, isError, error: resError }] = useRegisterMutation({});
+    useEffect(() => {
+        if (status === 'fulfilled') {
+            navigate('/Home')
+        } else if (status === 'rejected') {
+
+        }
+    }, [status])
+
+
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const register = () => {
+    const submit = () => {
         if (email === "" || password === "" || name === "") {
             Alert.alert(
                 "Invalid Details",
@@ -38,8 +50,10 @@ const Signup = () => {
                 ],
                 { cancelable: false }
             );
+        } else {
+            console.log({ name, email, password, role: "User" });
+            register({ name, email, password, role: "User" })
         }
-
     }
     return (
         <SafeAreaView
@@ -127,7 +141,7 @@ const Signup = () => {
                         />
                     </View>
 
-                    <Button title="Register" onPress={register} />
+                    <Button title="Register" onPress={submit} />
 
 
                     <Pressable onPress={() => navigation.push("SignIn")} style={{ marginTop: 20 }}>
