@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../components/UI/Button';
 import { useRouter } from 'expo-router';
 import { userLoggedOut } from '../../redux/features/auth/authSlice';
+import { useGetOrdersQuery } from '../../redux/features/order/orderApi';
 
 
 export default function ProfileScreen() {
@@ -15,6 +16,15 @@ export default function ProfileScreen() {
     const { user } = auth || {};
     const { name, email } = user || {};
     const dispatch = useDispatch();
+
+    const { data } = useGetOrdersQuery(auth?.user?._id,
+        {
+            skip: !auth?.user?._id
+        }
+    );
+
+    console.log(data);
+
     const handleLogout = () => {
         dispatch(userLoggedOut());
         navigation.navigate('/Home')

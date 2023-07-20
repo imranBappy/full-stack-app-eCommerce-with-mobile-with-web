@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-const baseUrl = process.env.API_URL || `https://e-commerce-eykj.onrender.com`
+const baseUrl = process.env.API_URL || `https://bd-agro.onrender.com`
 
 
 export const apiSlice = createApi({

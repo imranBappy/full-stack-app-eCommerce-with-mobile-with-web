@@ -11,7 +11,11 @@ export const blogApi = apiSlice.injectEndpoints({
             invalidatesTags: ['Orders']
         }),
         getOrders: builder.query({
-            query: () => `/orders`,
+            query: (userId) => {
+
+                console.log(userId);
+                return `/orders/${userId}`
+            },
             providesTags: ['Orders']
         }),
 
