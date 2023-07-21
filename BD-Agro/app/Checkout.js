@@ -23,10 +23,11 @@ const CheckoutScreen = () => {
     }, [status])
 
     const handleOrder = () => {
-        const productsId = cart.map((item) => item._id);
-        order({ address, phone, total, user: auth.user._id, product: productsId[0] })
-        console.log({ address, phone, total, user: auth.user._id, product: productsId[0] });
-
+        const orders = cart.map((item) => ({
+            product: item._id,
+            quantity: item.quantity
+        }));
+        order({ address, phone, total, user: auth.user._id, products: orders })
     }
 
     return (

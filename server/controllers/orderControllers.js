@@ -7,23 +7,20 @@ const Product = require('../models/Product')
 
 // product post controller
 exports.orderPostController = async (req, res, next) => {
-    let { product, user, quantity, address, phone, total } = req.body
-
-    console.log(product);
+    let { products, user, address, phone, total } = req.body
 
     let newOrder = new Order({
         user,
-        product, quantity, address, phone, total
+        products, address, phone, total
     })
+
     try {
         let createdProduct = await newOrder.save()
-
         // update brand
         await Auth.findOneAndUpdate(
             { _id: user },
             { $push: { 'orders': newOrder._id } }
         )
-
         res.json(createdProduct)
     } catch (e) {
         next(e)
@@ -42,15 +39,19 @@ exports.ordersGetController = async (req, res, next) => {
     try {
 
         let orders = await Order.find({ user: user })
-
-            .populate('product', '_id name')
             .populate('user', 'name')
-
-        // .select('-__v -updatedAt')
-
-        // .sort(order === 1 ? '-createdAt' : 'createdAt')
-        // .skip((itemPerPage * currentPage) - itemPerPage)
-        // .limit(itemPerPage)
+            .populate({
+                path: 'products.product',
+                select: 'name price image',
+                populate: {
+                    path: 'brand',
+                    select: 'name'
+                }
+            })
+            .select('-__v -updatedAt')
+            .sort(order === 1 ? '-createdAt' : 'createdAt')
+            .skip((itemPerPage * currentPage) - itemPerPage)
+            .limit(itemPerPage)
 
         console.log(orders);
         res.json(orders)
