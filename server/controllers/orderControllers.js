@@ -42,7 +42,7 @@ exports.ordersGetController = async (req, res, next) => {
             .populate('user', 'name')
             .populate({
                 path: 'products.product',
-                select: 'name price image',
+                select: 'name price thumbnail',
                 populate: {
                     path: 'brand',
                     select: 'name'

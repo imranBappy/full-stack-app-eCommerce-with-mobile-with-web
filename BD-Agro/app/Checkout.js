@@ -4,21 +4,20 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import CardItem from '../components/CartItem'
 import { usePostOrderMutation } from '../redux/features/order/orderApi'
-
+import { useRouter } from 'expo-router'
 const CheckoutScreen = () => {
     const cart = useSelector((state) => state.cart.cart)
     const auth = useSelector((state) => state.auth)
 
     const total = cart.reduce((total, item) => (total + item.price) * item.quantity, 0);
-    const [address, setAddress] = useState('')
-    const [phone, setPhone] = useState('')
-
-    const [order, { status }] = usePostOrderMutation()
+    const [address, setAddress] = useState('Mathbaria')
+    const [phone, setPhone] = useState('01724815061')
+    const [order, { status, isLoading }] = usePostOrderMutation()
+    const navigation = useRouter();
     useEffect(() => {
         if (status === 'fulfilled') {
             navigation.push('/Profile')
         } else if (status === 'rejected') {
-
         }
     }, [status])
 
@@ -27,7 +26,10 @@ const CheckoutScreen = () => {
             product: item._id,
             quantity: item.quantity
         }));
-        order({ address, phone, total, user: auth.user._id, products: orders })
+        console.log(auth.user._id);
+        if (auth.user._id && orders.length > 0) {
+            order({ address, phone, total, user: auth.user._id, products: orders })
+        }
     }
 
     return (
@@ -84,7 +86,7 @@ const CheckoutScreen = () => {
                 <Text style={{ flex: 1, fontSize: 18 }}>
                     Total: <Text style={{ fontSize: 18, fontWeight: "bold", color: "#088f8f" }}> ${total}</Text>
                 </Text>
-                <Pressable onPress={handleOrder} style={{ flex: 1 }}>
+                <Pressable disabled={isLoading} onPress={handleOrder} style={{ flex: 1 }}>
                     <Text style={{
                         borderColor: "gray",
                         borderRadius: 5,
