@@ -15,23 +15,27 @@ const Orders = () => {
 
     if (status === 'loading') {
         content = <Text>Loading...</Text>
-    } else if (status === 'fulfilled') {
+    } else if (status === 'fulfilled' && data?.length > 0) {
         content = data.map((item) => <Order key={item._id} item={item} />)
     } else if (status === 'rejected') {
         content = <Text>{error}</Text>
-    }
-    //  
+    } else if (data?.length === 0) {
+        content = <Text
+            style={{
 
-    console.log(data);
-    // console.log(111, auth);
-    // console.log(15, data, status, error);
+                fontSize: 16, fontWeight: "500", marginTop: 10,
+                textAlign: "center",
+                color: "#088f8f"
+            }}
+        >No Orders</Text>
+    }
+
+
     return (
         <ScrollView style={{ marginBottom: 50 }}>
             <Text style={{
                 fontSize: 16, fontWeight: "500", marginHorizontal: 10,
             }} >{'Orders'}</Text>
-
-
             {content}
         </ScrollView>
     )

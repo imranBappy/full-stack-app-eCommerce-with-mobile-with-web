@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 const Button = (props) => {
-    const { title, onPress } = props;
+    const { title, onPress, isLoading, style } = props;
     const [isHovered, setIsHovered] = useState(false);
     const handlePressIn = () => {
         setIsHovered(true);
@@ -12,15 +12,15 @@ const Button = (props) => {
         setIsHovered(false);
     };
     return (
-        <View style={{
-        }}>
+        <View style={style || {}}>
             <TouchableWithoutFeedback onPress={onPress}
                 onPressIn={handlePressIn}
                 onPressOut={handlePressOut}
+                disabled={isLoading || false}
             >
                 <View style={[styles.button, isHovered && styles.buttonHovered]}>
                     <Text style={styles.buttonText}>
-                        {title}
+                        {isLoading ? 'Loading...' : title}
                     </Text>
                 </View>
 

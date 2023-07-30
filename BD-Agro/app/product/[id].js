@@ -1,6 +1,6 @@
 import { View, Text, ScrollView, StyleSheet } from 'react-native'
 import React from 'react'
-import { Stack, useSearchParams } from 'expo-router'
+import { Stack, useRouter, useSearchParams } from 'expo-router'
 import { useGetAllProductsQuery } from '../../redux/features/product/productApi'
 import { useDispatch } from 'react-redux'
 import { EvilIcons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
@@ -20,9 +20,10 @@ const ProductDetails = () => {
     const addToCartHandle = () => {
         dispatch(addToCart(product))
     }
-
+    const navigation = useRouter();
     const handleBuyNow = () => {
-        alert("Buy Now")
+        navigation.push('/Checkout')
+        dispatch(addToCart(product))
     }
     return (
         <ScrollView style={styles.container}>
@@ -104,7 +105,7 @@ const ProductDetails = () => {
                         }}>Stock: ${stock}</Text>
                     </View>
                 </View>
-                {/* Product Price */}
+
 
                 <View style={{
                     borderTopWidth: 1,
@@ -134,10 +135,12 @@ const ProductDetails = () => {
                     }}
                 >
                     <Button
+                        style={{ flex: 1 }}
                         title="Add to Cart"
                         onPress={addToCartHandle}
                     />
                     <Button
+                        style={{ flex: 1 }}
                         title="Buy Now"
                         onPress={handleBuyNow}
                     />

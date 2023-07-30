@@ -25,9 +25,9 @@ const Signup = () => {
     const [register, { data, isLoading, status, isError, error: resError }] = useRegisterMutation({});
     useEffect(() => {
         if (status === 'fulfilled') {
-            navigate('/Home')
+            navigation.push('/Home')
         } else if (status === 'rejected') {
-
+            console.log(30, resError);
         }
     }, [status])
 

@@ -17,7 +17,6 @@ const authSlice = createSlice({
         },
         userLoggedOut(state) {
             clearAuth();
-            console.log('logout');
             state = {
                 accessToken: undefined,
                 user: undefined,

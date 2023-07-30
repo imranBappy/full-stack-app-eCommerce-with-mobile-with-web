@@ -18,12 +18,6 @@ export default function ProfileScreen() {
     const { name, email } = user || {};
     const dispatch = useDispatch();
 
-    // const { data } = useGetOrdersQuery(auth?.user?._id,
-    //     {
-    //         skip: !auth?.user?._id
-    //     }
-    // );
-
     const handleLogout = () => {
         dispatch(userLoggedOut());
         navigation.push('/Home')
@@ -59,7 +53,7 @@ export default function ProfileScreen() {
                             borderRadius: 100,
                             borderWidth: 2,
                             borderColor: "#088F8F",
-                        }} source={{ uri: "https://scontent.fdac138-1.fna.fbcdn.net/v/t39.30808-6/329394077_736096154815319_1366729648714407695_n.jpg?stp=cp6_dst-jpg&_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeHuY59vJkFsYGWgAYyVV4g39GRTL5pmetn0ZFMvmmZ62QVsxtfDPj5RBduVAOh32nJDHO8iFgx4d9uJPCSJPT1Y&_nc_ohc=UkwRPBjhmNAAX8MjYQG&_nc_ht=scontent.fdac138-1.fna&oh=00_AfDcSAJoUKm27g-5IytgcMesjVWLDyAoIln4pGEkwVph_w&oe=64BAC3EC" }} />
+                        }} source={{ uri: "https://static.thenounproject.com/png/5034901-200.png" }} />
                     </View>
 
                     <View>

@@ -1,15 +1,12 @@
 import { ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native'
 
-import React, { memo, useEffect } from 'react'
 import Header from '../../components/Header'
 import Carousel from '../../components/UI/Carousel';
 import Items from '../../components/UI/Items';
 import Categores from '../../components/Categores';
 import Brands from '../../components/Brands';
 import Products from '../../components/Products';
-import { getData } from '../../utils/dbManager';
 import sliderData from '../../data/slidersData';
-import { useSelector } from 'react-redux';
 
 
 const Home = () => {
@@ -34,7 +31,7 @@ const Home = () => {
     )
 }
 
-export default memo(Home);
+export default Home;
 const styles = StyleSheet.create({
     container: {
         flex: 1,

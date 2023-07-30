@@ -72,7 +72,7 @@ const Header = () => {
                 </View>
             </View>
             <Pressable>
-                <Image style={{ width: 45, height: 45, borderRadius: 25, borderWidth: 2, borderColor: "#088F8F" }} source={{ uri: "https://yt3.ggpht.com/yti/AHyvSCBwyxeNtPkmWSAD61WMhahQtMElFwPleFnwk9AGjw=s88-c-k-c0x00ffffff-no-rj-mo" }} />
+                <Image style={{ width: 45, height: 45, borderRadius: 25, borderWidth: 2, borderColor: "#088F8F" }} source={{ uri: "https://static.thenounproject.com/png/5034901-200.png" }} />
             </Pressable>
         </View>
     )

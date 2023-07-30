@@ -6,6 +6,7 @@
     },
     "name": "BD-Agro",
     "slug": "BD-Agro",
+    "icon": "./assets/icon.png",
     "extra": {
       "eas": {
         "projectId": "5319a4f9-9127-4892-9b30-32aaf5fb6513"
@@ -14,7 +15,7 @@
     "android": {
       "package": "com.imranbappy.BDAgro",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/icon.png",
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#088F8F"
       },
       "hermesEnabled": true,
